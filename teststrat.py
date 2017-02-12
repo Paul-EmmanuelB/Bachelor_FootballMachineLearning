@@ -26,9 +26,12 @@ class ElStrategy2(Strategy):
         
 
 
-def donothing():
-    return(SoccerAction(Vector2D(0,0),Vector2D(0,0)))
-
-def ralentir(mystate,action):
-        return SoccerAction((mystate.ball_position-mystate.my_position).norm_max(0.09),Vector2D(0,0))
-
+def defonceur(mystate,action):
+    if(mystate.my_position.distance(mystate.ball_position)<1.65):
+        return(action.shoot_but_adv)
+    if(mystate.position_mon_but.distance(mystate.ball_position)<GAME_WIDTH/2):
+        return fonceurball(mystate)
+    if(mystate.position_mon_but.x==GAME_WIDTH):
+        return action.sprint(Vector2D(4*GAME_WIDTH/5,mystate.ball_position.y))
+    else:
+        return action.sprint(Vector2D(GAME_WIDTH/5,mystate.ball_position.y))

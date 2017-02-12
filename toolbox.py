@@ -15,6 +15,9 @@ class MyState(object):
     def ball_position(self):
         return self.state.ball.position
     @property    
+    def milieu_terrain(self):
+        return Vector2D(GAME_WIDTH/2,GAME_HEIGHT/2)
+    @property    
     def ball_vitesse(self):
         return self.state.ball.vitesse
     @property
