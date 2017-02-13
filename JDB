@@ -1,0 +1,32 @@
+Améliorer le shoot:
+
+	Hypothèses /CI : 
+- Le joueur est en position de shoot, à côté de la balle
+- Possède un vecteur vitesse donné et une distance donnée.
+
+	On devra considérer l'influence de la distance et de la vitesse du joueur sur le shoot. Puis, plus tards, son angle entre lui et le but que l'on considérera nulle au début.
+
+	Notre but est de trouver une fonction de shoot (renvoyant un vecteur vitesse de shoot) parmis plusieurs qui sera la plus optimale. Elle peut éventuellement changer en fonction de la distance du ballon et de la vitesse du joueur.
+
+
+	
+
+	Sélection fonctions :
+	On sélectionne un certains nombre de fonctions sur les critères qu'une plus grande vitesse induit plus de random et donc que plus nous sommes proches et plus nous voulons être précis donc moins de vitesse. Et que pour une longue distance, nous ne voulons pas non plus trop de random. 
+
+β*(1-exp(-alpha*x))	β*x^(alpha)
+
+
+β de 0 à 100
+alpha de 0 à 100
+
+
+
+	Méthode d'évaluation : 
+On va utiliser la fonction Simulation.initate, qui va fixer des états que nous choisiront comme la position de la balle, de notre joueur, sa vitesse , etc....
+Ainsi nous pourrons faire de nombreuses simulations et trouver les constantes vouluent en utilisant un "algorithme génétique" définit en cours 5. Il consiste à croiser, muter puis sélectionner les constantes tester. 
+
+Une fois cela fait pour chacune fonction que nous voulons tester, nous les comparerons entre elles par la probabilité de marquer selon la distance , le vecteur vitesse respectivement du ballon et du joueur. 
+Finalement, nous déciderons si l'une des fonctions l'emporte totalement ou si un mix des deux est plus valable en fonction de la distance/vitesse .
+
+

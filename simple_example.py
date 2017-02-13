@@ -8,7 +8,7 @@ team1 = SoccerTeam(name="team1",login="etu1")
 team2 = SoccerTeam(name="team2",login="etu2")
 team1.add("Hassan",ElDefenseur())
 team1.add("Booba",ElLooser())
-team2.add("Paul",ElStrategySolo())
+team2.add("Paul",ElStrategy())
 team2.add("Pogba",ElDefenseur())
 
 
