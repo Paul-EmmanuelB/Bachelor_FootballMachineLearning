@@ -14,7 +14,7 @@ Améliorer le shoot:
 	Sélection fonctions :
 	On sélectionne un certains nombre de fonctions sur les critères qu'une plus grande vitesse induit plus de random et donc que plus nous sommes proches et plus nous voulons être précis donc moins de vitesse. Et que pour une longue distance, nous ne voulons pas non plus trop de random. 
 
-β*(1-exp(-alpha*x))	β*x^(alpha)
+β*(1-exp(-alpha*x))	β*x^(alpha) On sait que vitesse max ballon est de max 15.
 
 
 β de 0 à 100
