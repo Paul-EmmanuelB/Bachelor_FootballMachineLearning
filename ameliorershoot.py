@@ -5,11 +5,14 @@ from soccersimulator.settings import *
 from toolbox import MyState
 import numpy as np
 
+def superf(a,b,c,d,e,x):
+    return min(a*x**2+b*sin(x)**c+d*cos(x)**e,15)
+
 def expf(a,b,x):
-    return(b*(1-math.exp(-a*x)))
+    return min(b*(1-math.exp(-a*x)),15)
 
 def xexpalpha(a,b,x):
-    return(b*x**a)
+    return min(b*x**a,15)
 
 def shootf(fct,mystate):
     return SoccerAction(Vector2D(),(mystate.position_but_adv-mystate.my_position).normalize()*fct)
@@ -34,7 +37,7 @@ team2.add("Hassan",shoot())
 # Class Obeserver
 class Observer(object):
     MAX_STEP=40
-    def __init__(self,visu = True):  # Visu permet la visualisation de la simu. Si on en veut pas, on met false. Cela est permis par la fonction start en bas.
+    def __init__(self,visu = False):  # Visu permet la visualisation de la simu. Si on en veut pas, on met false. Cela est permis par la fonction start en bas.
         team1 = SoccerTeam("expe1")
         team2 = SoccerTeam("expe2")
         self.strat = shoot()         # On donne la strat qu'on va utiliser.
@@ -43,8 +46,8 @@ class Observer(object):
         self.simu = Simulation(team1,team2,max_steps=10000000) # On def la simu avec un enorme max_steps car on veut test x round et on veut pas devoir recommencer un match
         self.visu = visu
         self.simu.listeners+=self #ajout de l observer
-        list_a = np.linspace(0.1,20,10)    # Creation de la matrice pour la parametre a. De param1 a param2 avec param2 valeurs
-        list_b = np.linspace(0.1,20,10)
+        list_a = np.linspace(0.1,20,30)    # Creation de la matrice pour la parametre a. De param1 a param2 avec param2 valeurs
+        list_b = np.linspace(0.1,20,30)
         self.list_params = [(a,b) for a in list_a for b in list_b]   # Creation de tout les couples possible
         self.cpt_params = 0     # Va permettre de tester toute la liste de couple de params
         self.nb_expe = 20       # Nb de round que l on fera par postion 
@@ -54,7 +57,7 @@ class Observer(object):
     #initialisation des parametres ...
         self.last, self.but, self.expe = 0, 0, 0
     def begin_round(self,team1,team2,state):
-        self.x,self.y = 3*GAME_WIDTH/4+random.uniform(0,1)*GAME_WIDTH/4,random.uniform(0,1)*GAME_HEIGHT/2  # Ini des postions qu on voudra en depart, dans un secteur donne
+        self.x,self.y = 4*GAME_WIDTH/7+random.uniform(0,1)*GAME_WIDTH/7,GAME_HEIGHT/4+random.uniform(0,1)*GAME_HEIGHT/4  # Ini des postions qu on voudra en depart, dans un secteur donne
         self.simu.state.states[(1,0)].position = Vector2D(self.x,self.y)
         self.simu.state.ball.position = Vector2D(self.x,self.y)
     #ou self.simu.set_state(state)
@@ -69,8 +72,9 @@ class Observer(object):
         self.expe+=1        # On increment pour chaque round
         if self.expe > self.nb_expe:
             if self.cpt_params <len(self.list_params)-1:   # Si on a pas traite tout les couples 
-                self.res[self.list_params[self.cpt_params]]= self.but*1./self.expe  # On met dans res la proba
-                self.pos[self.list_params[self.cpt_params]]= self.x,self.y
+                if self.but*1./self.expe > 0.5 :
+                    self.res[self.list_params[self.cpt_params]]= self.but*1./self.expe  # On met dans res la proba
+                    self.pos[self.list_params[self.cpt_params]]= self.x,self.y
                 self.cpt_params+=1  # On change les params qu on va tester
                 self.last, self.but, self.expe = 0, 0, 0    # On reinitialise
             else:

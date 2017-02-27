@@ -30,3 +30,46 @@ Une fois cela fait pour chacune fonction que nous voulons tester, nous les compa
 Finalement, nous déciderons si l'une des fonctions l'emporte totalement ou si un mix des deux est plus valable en fonction de la distance/vitesse .
 
 
+
+
+
+	Résultats des tests :
+
+
+Test fct exp :
+
+Cette fonction nécessitant uniquement que 2 paramètres à tester, il n'est pas utile d'user de l'algorithme génétique, très performant et viable pour de nombreux paramètres. Nous allons donc nous contentez uniquement de créer deux listes de paramètres pour A et béta dont nous userons pour créer une liste de couple pour chacune des valeures présentes.
+
+
+Pour procéder au test, on utilise la fonction observer.
+On découpe la surface adverse selon le mileu horizontal. Car la symétrie induira les mêmes résultats. On découpe cette moitié de surface adverse en une matrice M=(2,7) pour être assez préçis concernant les paramètres à tester. 
+
+On affiche par la suite les résultats par valeur de matrice :
+
+M(1,1):	Useless			  M(1,2):  Useless 			M(1,3):	Useless			
+M(1,4): Useless			  M(1,5): (18.6, 11.1) 0.5, peut être useless				M(1,6):	(20, 4.2)		  M(1,7): (20 , 2.84)		        M(2,1): Useless	      		M(2,2):	Useless	 		  M(2,3):  Useless			M(2,4): Useless			M(2,5):	Useless			  M(2,6): (19.3, 4.2)    	        M(2,7):(7.3, 4.2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
