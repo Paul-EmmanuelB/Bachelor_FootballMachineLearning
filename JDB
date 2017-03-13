@@ -1,4 +1,4 @@
-Améliorer le shoot:
+JDB Améliorer le shoot:
 
 	Hypothèses /CI : 
 - Le joueur est en position de shoot, à côté de la balle
@@ -54,12 +54,18 @@ M(1,4): Useless			  M(1,5): (18.6, 11.1) 0.5, peut être useless				M(1,6):	(20,
 
 
 
+Création d'une classe pour mettre les conditions des zones du shoot et des paamètres allant de paires. Certaines zones sont considérées comme morte, on ne doit pas shooter de là car la probabilité de marquer est trop faible. on se déplace donc avec un dribble vers le but adv. 
+Le problable de cela est que le défenseur adverse trouve donc un bon champ d'action pour la déguager. 
 
 
 
 
 
+JDB Arbre de décision : 
 
+
+
+pickle 
 
 
 
