@@ -27,9 +27,9 @@ def ralentir_bcp(mystate,action):
 def defonceur(mystate,action):
     if(mystate.my_position.distance(mystate.ball_position)<1.65):
         return action.petit_shoot_joueur_proche
-    if(mystate.my_position.distance(mystate.ball_position)<10):
-        return fonceurballdef(mystate)
-    if(mystate.position_mon_but.distance(mystate.ball_position)<GAME_WIDTH/2):
+    if(mystate.position_mon_but.distance(mystate.ball_position)<GAME_WIDTH/3):
+        if mystate.my_position.distance(mystate.ball_position)<10:
+            return SoccerAction(mystate.ball_position-mystate.my_position,Vector2D())
         return fonceurball(mystate)
     p=SoccerAction((mystate.position_mon_but-mystate.my_position)+(mystate.ball_position-mystate.position_mon_but)/2,Vector2D())
     if(mystate.my_position.distance((mystate.position_mon_but-mystate.my_position)+(mystate.ball_position-mystate.position_mon_but)/2)<6):
@@ -69,22 +69,23 @@ class ElStrategy(Strategy):
             if(mystate.position_mon_but.distance(mystate.ball_position)>GAME_WIDTH*0.35 and mystate.position_mon_but.distance(mystate.ball_position)<GAME_WIDTH*0.65):
                 return(action.petit_shoot_but_adv)
             return(action.shoot_but_adv)
-
+            
         if mystate.my_position.distance(mystate.ball_position)<10:
             return fonceurballdef(mystate)
-
+         
         if(mystate.position_mon_but.x==GAME_WIDTH):
             if (mystate.position_mon_but.distance(mystate.ball_position)<GAME_WIDTH*0.25):
                 return action.sprint(Vector2D(0.65*GAME_WIDTH,mystate.ball_position.y))
+            if (mystate.position_mon_but.distance(mystate.ball_position)<=GAME_WIDTH/2): 
+                return action.sprint(Vector2D(0.5*GAME_WIDTH,mystate.ball_position.y))         
+            
+        if(mystate.position_mon_but.x==0):
+            if (mystate.position_mon_but.distance(mystate.ball_position)<GAME_WIDTH*0.45):
+                return action.sprint(Vector2D(0.55*GAME_WIDTH,mystate.ball_position.y))
+
             if (mystate.position_mon_but.distance(mystate.ball_position)<=GAME_WIDTH/2):
                 return action.sprint(Vector2D(0.5*GAME_WIDTH,mystate.ball_position.y))
 
-        if(mystate.position_mon_but.x==0):
-            if (mystate.position_mon_but.distance(mystate.ball_position)<GAME_WIDTH*0.45):
-                return action.sprint(Vector2D(0.4*GAME_WIDTH,mystate.ball_position.y))
-            if (mystate.position_mon_but.distance(mystate.ball_position)<=GAME_WIDTH/2):
-                return action.sprint(Vector2D(0.5*GAME_WIDTH,mystate.ball_position.y))
-        
         return fonceurball(mystate)
 
 
